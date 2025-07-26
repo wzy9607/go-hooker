@@ -1,0 +1,229 @@
+version: "2"
+linters:
+  enable:
+    - asasalint
+    - bidichk
+    - bodyclose
+    - containedctx
+    - contextcheck
+    - cyclop
+    - dupl
+    - dupword
+    - durationcheck
+    - embeddedstructfieldcheck
+    - errchkjson
+    - errname
+    - errorlint
+    - exhaustive
+    - exhaustruct
+    - forbidigo
+    - forcetypeassert
+    - funcorder
+    - funlen
+    - gocheckcompilerdirectives
+    - gochecksumtype
+    - goconst
+    - gocritic
+    - gomoddirectives
+    - gosec
+    - grouper
+    - inamedparam
+    - interfacebloat
+    - lll
+    - maintidx
+    - makezero
+    - mirror
+    - misspell
+    - mnd
+    - musttag
+    - nakedret
+    - nestif
+    - nilerr
+    - nilnil
+    - noctx
+    - nolintlint
+    - nosprintfhostport
+    - paralleltest
+    - perfsprint
+    - predeclared
+    - reassign
+    - revive
+    - spancheck
+    - staticcheck
+    - tagalign
+    - testifylint
+    - thelper
+    - tparallel
+    - unconvert
+    - unparam
+    - usestdlibvars
+    - usetesting
+    - varnamelen
+    - wastedassign
+    - whitespace
+  settings:
+    cyclop:
+      max-complexity: 15
+      package-average: 10
+    dupl:
+      threshold: 120
+    embeddedstructfieldcheck:
+      forbid-mutex: true
+    errcheck:
+      exclude-functions:
+        - encoding/json.Marshal
+        - encoding/json.MarshalIndent
+    errchkjson:
+      check-error-free-encoding: true
+      report-no-exported: true
+    exhaustive:
+      check:
+        - switch
+        - map
+      default-signifies-exhaustive: true
+    funcorder:
+      constructor: true
+      struct-method: false
+    funlen:
+      lines: 100
+      statements: 80
+    gocognit:
+      min-complexity: 20
+    gocritic:
+      disabled-checks:
+        - dupImport # https://github.com/go-critic/go-critic/issues/845
+        - emptyStringTest
+        - hugeParam
+        - ifElseChain
+        - ruleguard
+        - sloppyReassign
+        - whyNoLint # nolintlint is better
+      enabled-tags:
+        - diagnostic
+        - style
+        - performance
+        - experimental
+        - opinionated
+      settings:
+        captLocal:
+          paramsOnly: false
+        unnamedResult:
+          checkExported: true
+    govet:
+      disable:
+        - fieldalignment
+      enable-all: true
+    grouper:
+      import-require-single-import: true
+    mnd:
+      checks:
+        - argument
+        - case
+        - condition
+        - return
+      ignored-numbers:
+        - "2"
+        - "10"
+        - "64"
+      ignored-functions:
+        - strings.SplitN
+    nakedret:
+      max-func-lines: 50
+    nolintlint:
+      require-explanation: true
+      require-specific: true
+      allow-unused: false
+    revive:
+      rules:
+        - name: argument-limit
+          arguments:
+            - 8
+        - name: atomic
+        - name: bool-literal-in-expr
+        - name: confusing-results
+        - name: constant-logical-expr
+        - name: context-as-argument
+        - name: context-keys-type
+        - name: datarace
+        - name: defer
+        - name: error-naming
+        - name: error-return
+          arguments:
+            - preserveScope
+        - name: errorf
+        - name: filename-format
+        - name: increment-decrement
+        - name: indent-error-flow
+        - name: modifies-value-receiver
+        - name: optimize-operands-order
+        - name: redundant-import-alias
+        - name: string-of-int
+        - name: struct-tag
+        - name: superfluous-else
+        - name: time-date
+        - name: time-equal
+        - name: time-naming
+        - name: unnecessary-format
+        - name: var-naming
+    staticcheck:
+      checks:
+        - -ST1000
+        - all
+    usestdlibvars:
+      http-method: true
+      http-status-code: true
+      time-date-month: true
+      time-weekday: true
+      time-month: true
+      time-layout: true
+      crypto-hash: true
+      default-rpc-path: true
+      sql-isolation-level: true
+      tls-signature-scheme: true
+      constant-kind: true
+    varnamelen:
+      max-distance: 10
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - std-error-handling
+    rules:
+      - linters:
+          - containedctx
+          - cyclop
+          - dupl
+          - exhaustive
+          - exhaustruct
+          - forcetypeassert
+          - funlen
+          - mnd
+          - nakedret
+          - spancheck
+          - varnamelen
+        path: _test\.go
+issues:
+  max-issues-per-linter: 0
+  max-same-issues: 0
+formatters:
+  enable:
+    - gci
+    - gofmt
+    - gofumpt
+  settings:
+    gci:
+      sections:
+        - standard
+        - default
+        - prefix(github.com/redis/go-redis)
+        - localmodule
+      custom-order: true
+    gofmt:
+      simplify: false # covered by gofumpt
+      rewrite-rules:
+        - pattern: interface{}
+          replacement: any
+        - pattern: a[b:len(a)]
+          replacement: a[b:]
+  exclusions:
+    generated: lax
