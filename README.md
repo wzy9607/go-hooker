@@ -1,5 +1,8 @@
 # go-hooker
 
+[![ci](https://github.com/wzy9607/go-hooker/actions/workflows/pull-request.yml/badge.svg)](https://github.com/wzy9607/go-hooker/actions/workflows/pull-request.yml)
+[![codecov](https://codecov.io/gh/wzy9607/go-hooker/graph/badge.svg?token=VVMWEWOQFO)](https://codecov.io/gh/wzy9607/go-hooker)
+
 Golang Generic Hook
 
 ## installation
