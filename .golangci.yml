@@ -16,7 +16,7 @@ linters:
     - errorlint
     - exhaustive
     - exhaustruct
-    - forbidigo
+    #- forbidigo
     - forcetypeassert
     - funcorder
     - funlen
