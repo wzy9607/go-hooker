@@ -11,14 +11,14 @@ Golang Generic Hook
 go get github.com/dingyaguang117/go-hooker
 ```
 
-
-##  How to use
+## How to use
 
 ```go
 package main
 
 import (
 	"fmt"
+	
 	"github.com/dingyaguang117/go-hooker/hooker"
 )
 
@@ -66,11 +66,11 @@ func main() {
 output
 
 ```
------ Hook3 before ----
------ Hook2 before ----
 ----- Hook1 before ----
+----- Hook2 before ----
+----- Hook3 before ----
 1 + 2
------ Hook1 after ----
------ Hook2 after ----
 ----- Hook3 after ----
+----- Hook2 after ----
+----- Hook1 after ----
 ```
