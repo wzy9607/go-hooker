@@ -94,7 +94,7 @@ func TestHooker_GetHooks(t *testing.T) {
 	hooker.AddHook(func(next handler) handler { return func(a int) int { return next(a) } })
 	hooker.AddHook(func(next handler) handler { return func(a int) int { return next(a) } })
 	hooks := hooker.GetHooks()
-	assert.Equal(t, 2, len(hooks))
+	assert.Len(t, hooks, 2)
 
 	// test hooks are cloned
 	hooks[1] = func(next handler) handler { return func(a int) int { return next(a + 1) } }
